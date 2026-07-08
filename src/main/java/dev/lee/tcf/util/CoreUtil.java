@@ -16,7 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CoreUtil {
-  private final static int mcVersion = Integer.parseInt(getMajorVersion(Bukkit.getVersion()).substring(2));
+  private final static int mcVersion = resolveMinorVersion();
   private final static Pattern hexPattern = Pattern.compile("\\&#[a-fA-F0-9]{6}");
 
   public static String parseColor(String text) {
@@ -32,18 +32,17 @@ public class CoreUtil {
     return ChatColor.translateAlternateColorCodes('&', text);
   }
 
-  private static String getMajorVersion(String version) {
-    if (version == null) return null;
-    int index = version.lastIndexOf("MC:");
-    if (index != -1) {
-      version = version.substring(index + 4, version.length() - 1);
-    } else if (version.endsWith("SNAPSHOT")) {
-      index = version.indexOf('-');
-      version = version.substring(0, index);
+  private static int resolveMinorVersion() {
+    String bukkitVersion = Bukkit.getBukkitVersion();
+    if (bukkitVersion == null) return 0;
+    String mcVersion = bukkitVersion.split("-")[0];
+    String[] parts = mcVersion.split("\\.");
+    if (parts.length < 2) return 0;
+    try {
+      return Integer.parseInt(parts[1]);
+    } catch (NumberFormatException e) {
+      return 0;
     }
-    int lastDot = version.lastIndexOf('.');
-    if (version.indexOf('.') != lastDot) version = version.substring(0, lastDot);
-    return version;
   }
 
   public static boolean isSupported(int version) {
