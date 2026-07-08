@@ -17,7 +17,7 @@ Clone this repository, then run the following command:
 
 [Spigot](https://www.spigotmc.org/) - [Paper](https://papermc.io/software/paper) - [Folia](https://papermc.io/software/folia)
 
-`1.13.x|1.14.x|1.16.x|1.17.x|1.18.x|1.19.x|1.20.x|1.21.x`
+`1.13.x|1.14.x|1.16.x|1.17.x|1.18.x|1.19.x|1.20.x|1.21.x|26.x`
 
 ## License
 
