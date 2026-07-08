@@ -67,7 +67,7 @@ public class ListCMD extends SubCommand {
     if (CoreUtil.isPositiveInt(pageString)) page = Integer.parseInt(pageString);
     int position = page * maxDisplayed + 1;
 
-    List<String> commandList = tabManager.getGroupCommands(group);
+    List<String> commandList = new ArrayList<>(tabManager.getGroupCommands(group));
     commandList.sort(String::compareToIgnoreCase);
 
     List<TextComponent> lines = new LinkedList<>();

@@ -56,7 +56,7 @@ public enum Lang {
     String text = getString();
     if (variables == null || variables.length == 0) return text;
     for (int i = 0; i < variables.length; i++) text = text.replace("{" + i + "}", variables[i]);
-    return CoreUtil.parseColor(text);
+    return text;
   }
 
   public TextComponent getTextComponent() {

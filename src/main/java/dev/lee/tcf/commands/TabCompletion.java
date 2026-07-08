@@ -19,7 +19,7 @@ public class TabCompletion implements TabCompleter {
       return StringUtil.copyPartialMatches(args[0], hasCommand, new ArrayList<>());
     } else {
       SubCommand subCommand = TabCompleteFilter.getInstance().getCommandManager().getSubCommand(args[0].toLowerCase());
-      if (sender.hasPermission(subCommand.getPermission())) return subCommand.onTabComplete(sender, args);
+      if (subCommand != null && sender.hasPermission(subCommand.getPermission())) return subCommand.onTabComplete(sender, args);
     }
     return new ArrayList<>();
   }
